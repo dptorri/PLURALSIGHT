@@ -1,4 +1,4 @@
-package Java8;
+package $03_Java8;
 
 public class RunnableLambda {
     public static void main(String... args) throws InterruptedException {
@@ -31,6 +31,10 @@ public class RunnableLambda {
             };
         };
 
+
+        // Thread t = new Thread(runnable);
+        // t.start();
+        // t.join();
 
         Thread t = new Thread(runnableLambda);
         t.start();

@@ -1,7 +1,10 @@
-#### Introduction to Lambda Expressions in Java 8
 
-#### Java 8 Stream API and Collectors		
-What is a lambda expression for?
+# What's New in Java 8
+
+## Introduction to Lambda Expressions in Java 8
+
+### Java 8 Stream API and Collectors	
+#### What is a lambda expression for?
 
 Lets implement this interface:
 ```
@@ -31,11 +34,13 @@ Lambda is good to make instaces of Anonymus classes easier to read
 FileFilter filter = (File file) -> file.getName().endsWith(".java");
 ```
 
+#### 3 Questions about lambdas
 
 
 
 
-#### Java 8 Date and Time API		
-#### Strings, IO, and Other Bits and Pieces		
-#### Introduction to Java FX 8		
-#### Nashorn: A JavaScript Engine on the JVM
+
+### Java 8 Date and Time API		
+### Strings, IO, and Other Bits and Pieces		
+### Introduction to Java FX 8		
+### Nashorn: A JavaScript Engine on the JVM
