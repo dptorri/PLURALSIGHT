@@ -2,8 +2,6 @@
 # What's New in Java 8
 
 ## Introduction to Lambda Expressions in Java 8
-
-### Java 8 Stream API and Collectors	
 #### What is a lambda expression for?
 
 Lets implement this interface:
@@ -92,7 +90,7 @@ Can be written:
 
 #### How do we process data in java
 - Where are our objects?
-- Most of the time in a Collection (List, Set or Map)
+- Most of the time in a Collection (List, Se or Map)
 
 By using `Default Methods` it allows to change the old interfaces without breaking the existing 
 implementations, also Static methods are also allowed since Java 8
@@ -105,6 +103,35 @@ public interface Iterable<E> {
 }
 ```
 Refactoring this is not an option!
+
+### Java 8 Stream API and Collectors	
+#### Map / filter / reduce
+
+`1st step mapping:`
+- takes a `List<Person>` and return as `List<Integer>`
+- both lists have same size
+
+`2nd step filter:`
+- takes ages `List<Integer>` and returns `List<Integer>` e.g. greater than 20
+- some elements are sorted out in the process
+
+`3rd step: average`
+
+#### What is a Stream
+
+- A java typed interface
+and a new concept (not a collection)
+
+- process data in parallel efficiently inside the JVM
+Pipelined to avoid unnecessary intermediary computations
+(Several operations are completed in one pass of the data)
+
+- object that does not holds data
+- object that does not change the data in the process
+
+#### Patterns for Streams
+
+* We can chain consumers
 
 
 ### Java 8 Date and Time API		
