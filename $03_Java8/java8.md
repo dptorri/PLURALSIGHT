@@ -94,6 +94,17 @@ Can be written:
 - Where are our objects?
 - Most of the time in a Collection (List, Set or Map)
 
+By using `Default Methods` it allows to change the old interfaces without breaking the existing 
+implementations, also Static methods are also allowed since Java 8
+
+How can we add method to that forEach method without breaking all the existing 
+```
+public interface Iterable<E> {
+    // the usual methods
+    void forEach(Consumer<E> consumer);
+}
+```
+Refactoring this is not an option!
 
 
 ### Java 8 Date and Time API		
