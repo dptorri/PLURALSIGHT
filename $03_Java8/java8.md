@@ -90,7 +90,7 @@ No it is not as a typical java object but an object without its own identity. Al
 
 * Supplier (Single interface does not take an object)
 * Consumer (Single interface takes an object)
-  Consumer/BiConsumer (Takes 2 Objedcts)
+  Consumer/BiConsumer (Takes 2 Objects)
 * Predicate (Takes an obj as a parameter and returns a boolean)
   Predicate/BiConsumer (takes 2 objects)
 
@@ -108,22 +108,61 @@ Can be written:
 `Consumer<Stirng> c = System.out::println`
 `Comparator<Integer> c = Integer::compare`
 
-#### How do we process data in java
-- Where are our objects?
-- Most of the time in a Collection (List, Se or Map)
+#### How do we process data in Java ?
 
-By using `Default Methods` it allows to change the old interfaces without breaking the existing 
-implementations, also Static methods are also allowed since Java 8
+##### Where are our objects?
+- Most of the time they are in a Collection (List, Set or Map)
 
-How can we add method to that forEach method without breaking all the existing 
+##### Can I process this data with Lambdas?
+
+With the method reference looks like this:
+````
+List<Customer> list : ...
+list.forEach(customer -> System.out::println)
+````
+So yes!
+
+Where does this forEach method come from?
+
+You could add a forEach method to the JVM but
+there is a simpler way.
+
+##### How can we add method to that forEach method without breaking all the existing???
 ```
 public interface Iterable<E> {
     // the usual methods
     void forEach(Consumer<E> consumer);
+
+    default void forEach(Consumer<E> consumer) {
+        for (E e : this) {
+            consumer.accept(e);
+        }
+    }
 }
 ```
 Refactoring this is not an option!
 
+By using `Default Methods` it allows to change the old interfaces without breaking the existing 
+implementations, also Static methods are also allowed since Java 8.
+
+#### Examples of new patterns
+
+* Predicates
+```
+Predicate<String> p1 = s -> s.length() < 20;
+@FunctionalInterface
+public interface Predicate<T> {
+    boolean test(T t);
+    
+    default Predicate<T> and(Predicate<? super T> other) {
+        Objects.requireNonNull(other);
+        return (t) -> test(t) && other.test(t);
+    }
+}
+
+
+
+```
 ### Java 8 Stream API and Collectors	
 #### Map / filter / reduce
 
