@@ -4,14 +4,19 @@
 ## Introduction to Lambda Expressions in Java 8
 #### What is a lambda expression for?
 
+You can create a concrete clase and implement the interface to filter files
 Lets implement this interface:
 ```
-// You can create a concrete clase and implement the interface to filter files
 public class JavaFileFilter implements FileFilter {
     public boolean accept(File file) {
         return file.getName().endsWith(".java");
     }
 }
+
+// And use it:
+JavaFileFilter fileFilter = new JavaFileFilter();
+File dir = new File("d:/tmp");
+File[] javaFiles = dir.listFiles(fileFilter);
 ```
 The most common way is to use an anonymous class.
 ```
@@ -26,23 +31,37 @@ FileFilter fileFilter = new FileFilter() {
 File dir = new File("d:/tmp);
 File[] javaFiles = dir.listFiles(fileFilter);
 ```
-Lambda is good to make instaces of Anonymus classes easier to read
 
+##### What is a Lambda Expression for?
+Lambda is good to make instaces of Anonymus classes easier to read / write
+Lets rewrite it in Lambda way.
 ```
 FileFilter filter = (File file) -> file.getName().endsWith(".java");
+```
+Example `RunnableLambda.java`
+
+##### Several ways of writing a Lambda Expression
+- Row one liner
+- More than 1 line
+`````
+Comparator<String> c =
+    (String s1, String s2) ->
+        Integer.compare(s1.length(), s2.length());
 ```
 
 #### 3 Questions about lambdas
 
-- What is the type of a lambda expression
-A functional interface: Interface with only one abstract method
-Example
+##### What is the type of a lambda expression?
+It is a functional interface this means it is an interface with only one abstract method.
+
+Example:
 ```
 public interface Runnable {
     run();
 }
 ```
-Note: Method from the Object class do not count
+
+Note: Method from the Object class do not count, so the funcional interface can have those.
 
 A functional interface can be anotated, for convenience the compiler can tell where it is functional or not.
 ```
@@ -51,19 +70,20 @@ public interface MyFunctionalInterface {
     someMethod();
 
     /**
-    * Some docs
+    * Some docs "this method does not count"
     */
     equals(Object o);
 }
 ```
 
-- Can a lambda be put in a variable
+- Can a lambda be put in a variable?
 ```
-        Comparator<String> compLambda = (String s1, String s2) ->
+Comparator<String> compLambda = 
+    (String s1, String s2) ->
         Integer.compare(s1.length(), s2.length());
 ```
 - Is a lambda expression an object?
-No it is not as a typical java object but an object without its own identity.
+No it is not as a typical java object but an object without its own identity. Also it is used without the keyword "new". Less work for the JVM.
 (Should not be used as an object)
  
  #### Functional interfaces
