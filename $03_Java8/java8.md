@@ -43,7 +43,7 @@ Example `RunnableLambda.java`
 ##### Several ways of writing a Lambda Expression
 - Row one liner
 - More than 1 line
-`````
+```
 Comparator<String> c =
     (String s1, String s2) ->
         Integer.compare(s1.length(), s2.length());
