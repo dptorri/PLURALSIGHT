@@ -6,7 +6,7 @@
 
 You can create a concrete clase and implement the interface to filter files
 Lets implement this interface:
-```
+````Java
 public class JavaFileFilter implements FileFilter {
     public boolean accept(File file) {
         return file.getName().endsWith(".java");
@@ -17,9 +17,9 @@ public class JavaFileFilter implements FileFilter {
 JavaFileFilter fileFilter = new JavaFileFilter();
 File dir = new File("d:/tmp");
 File[] javaFiles = dir.listFiles(fileFilter);
-```
-The most common way is to use an anonymous class.
-```
+````
+The most common way is Javato use an anonymous class.
+```Java
 FileFilter fileFilter = new FileFilter() {
 
     @Override
@@ -43,7 +43,7 @@ Example `RunnableLambda.java`
 ##### Several ways of writing a Lambda Expression
 - Row one liner
 - More than 1 line
-```
+```Java
 Comparator<String> c =
     (String s1, String s2) ->
         Integer.compare(s1.length(), s2.length());
@@ -55,7 +55,7 @@ Comparator<String> c =
 It is a functional interface this means it is an interface with only one abstract method.
 
 Example:
-```
+```Java
 public interface Runnable {
     run();
 }
@@ -64,7 +64,7 @@ public interface Runnable {
 Note: Method from the Object class do not count, so the funcional interface can have those.
 
 A functional interface can be anotated, for convenience the compiler can tell where it is functional or not.
-```
+```Java
 @FunctionalInterface
 public interface MyFunctionalInterface {
     someMethod();
@@ -77,7 +77,7 @@ public interface MyFunctionalInterface {
 ```
 
 - Can a lambda be put in a variable?
-```
+```Java
 Comparator<String> compLambda = 
     (String s1, String s2) ->
         Integer.compare(s1.length(), s2.length());
@@ -86,7 +86,9 @@ Comparator<String> compLambda =
 No it is not as a typical java object but an object without its own identity. Also it is used without the keyword "new". Less work for the JVM.
 (Should not be used as an object)
  
- #### Functional interfaces
+#### Functional interfaces
+
+An Interface that contains exactly one abstract method is known as functional interface. It can have any number of default, static methods but can contain only one abstract method. It can also declare methods of object class.
 
 * Supplier (Single interface does not take an object)
 * Consumer (Single interface takes an object)
@@ -128,7 +130,7 @@ You could add a forEach method to the JVM but
 there is a simpler way.
 
 ##### How can we add method to that forEach method without breaking all the existing???
-```
+```Java
 public interface Iterable<E> {
     // the usual methods
     void forEach(Consumer<E> consumer);
@@ -147,8 +149,9 @@ implementations, also Static methods are also allowed since Java 8.
 
 #### Examples of new patterns
 
+
 * Predicates
-```
+```Java
 Predicate<String> p1 = s -> s.length() < 20;
 @FunctionalInterface
 public interface Predicate<T> {
@@ -163,7 +166,9 @@ public interface Predicate<T> {
 
 
 ```
-### Java 8 Stream API and Collectors	
+
+### Java 8 Stream API and Collectors
+
 #### Map / filter / reduce
 
 `1st step mapping:`
